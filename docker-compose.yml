@@ -1,0 +1,33 @@
+# proyecto/docker-compose.yml
+version: '3.8'
+
+services:
+  dynamodb:
+    image: amazon/dynamodb-local
+    container_name: dynamodb
+    ports:
+      - "8000:8000"
+    volumes:
+      - dynamodata:/home/dynamodblocal/data
+
+  node-express:
+    build:
+      context: .
+      dockerfile: infrastructure/node/Dockerfile
+    container_name: node-express
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/usr/src/app/src
+      - ./tsconfig.json:/usr/src/app/tsconfig.json
+      - ./package.json:/usr/src/app/package.json
+      - ./package-lock.json:/usr/src/app/package-lock.json
+    depends_on:
+      - dynamodb
+    environment:
+      AWS_ACCESS_KEY_ID: 'EXAMPLE'
+      AWS_SECRET_ACCESS_KEY: 'EXAMPLE'
+      REGION: 'local'
+
+volumes:
+  dynamodata:

@@ -1,0 +1,81 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-debug.log*
+
+# TypeScript
+/dist/
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+jspm_packages/
+
+# Config files
+.env
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*~
+
+# MacOS
+.DS_Store
+
+# Linux
+*~
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+docker-compose.prod.yml
+docker-compose.test.yml
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Optional npm cache directory
+.npm/
+
+# Optional eslint cache
+.eslintcache
+
+# TypeScript cache
+.tsbuildinfo
+
+# CI/CD
+ci/
+cicd/
+
+# Build files
+/build/
+.babelrc
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Miscellaneous
+.sass-cache/
+.connect/
+.repl_history
+*.bak
+*.backup
+*.old
+*.orig
+
+# Compiled JavaScript files
+*.js
+*.d.ts.map
