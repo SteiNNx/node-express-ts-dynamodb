@@ -2,7 +2,14 @@
 ### @link https://marketplace.visualstudio.com/items?itemName=humao.rest-client
 
 ### Get all transactions
-GET http://localhost:3000/transaction
+GET http://localhost:3000/api/transaction
 
 ### Get transaction by id 1
-GET http://localhost:3000/transaction/1
+GET http://localhost:3000/api/transaction/1
+
+### Get all transactions with jwt
+GET http://localhost:3000/api/transaction/security
+
+### Get Token
+### Get all transactions with jwt
+GET http://localhost:3000/api/auth/login

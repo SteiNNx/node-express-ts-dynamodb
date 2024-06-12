@@ -1,14 +1,19 @@
 import express from 'express';
-import TransactionRouter from './routes/TransactionRouter';
-import RunSeeder from './database/seed/RunSeeder'; 
+import { json } from 'body-parser';
+import routes from './routes';
+import RunSeeder from './database/seed/RunSeeder';
+import config from './config/config';
 
 const app = express();
-app.use(express.json());
-app.use('/transaction', TransactionRouter);
+
+app.use(json());
+app.use('/' + config.prefix, routes);
+
+// Log the loaded config for debugging
+console.log('Config:', config);
 
 RunSeeder();
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(config.port, () => {
+    console.log(`Server is running on port ${config.port}`);
 });

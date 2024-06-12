@@ -14,7 +14,8 @@ class TransactionController {
             res.json(transaction);
         } catch (error) {
             console.error(error);
-            res.status(500).json({ error: 'An error occurred while fetching transaction.' });
+            res.status(500)
+                .json({ error: 'An error occurred while fetching transaction.' });
         }
     };
 
@@ -24,11 +25,13 @@ class TransactionController {
             if (transaction) {
                 res.json(transaction);
             } else {
-                res.status(404).send('transaction not found');
+                res.status(404)
+                    .send('transaction not found');
             }
         } catch (error) {
             console.error(error);
-            res.status(500).json({ error: 'An error occurred while fetching the transaction.' });
+            res.status(500)
+                .json({ error: 'An error occurred while fetching the transaction.' });
         }
     };
 
@@ -36,10 +39,12 @@ class TransactionController {
         try {
             const transaction = req.body;
             await this.TransactionService.createTransaction(transaction);
-            res.status(201).send('transaction created');
+            res.status(201)
+                .send('transaction created');
         } catch (error) {
             console.error(error);
-            res.status(500).json({ error: 'An error occurred while creating the transaction.' });
+            res.status(500)
+                .json({ error: 'An error occurred while creating the transaction.' });
         }
     };
 }
