@@ -1,27 +1,44 @@
-import express from 'express';
+import { Request, Response } from 'express';
 import BookService from '../services/BookService';
 
-const bookService = new BookService();
-export const router = express.Router();
+class BookController {
+    private bookService: BookService;
 
-router.get('/', async (req, res) => {
-    const books = await bookService.getAllBooks();
-    res.json(books);
-});
-
-router.get('/:id', async (req, res) => {
-    const book = await bookService.getBookById(req.params.id);
-    if (book) {
-        res.json(book);
-    } else {
-        res.status(404).send('Book not found');
+    constructor() {
+        this.bookService = new BookService();
     }
-});
 
-router.post('/', async (req, res) => {
-    const book = req.body;
-    await bookService.createBook(book);
-    res.status(201).send('Book created');
-});
+    public getAllBooks = async (req: Request, res: Response) => {
+        try {
+            const books = await this.bookService.getAllBooks();
+            res.json(books);
+        } catch (error) {
+            res.status(500).json({ error: 'An error occurred while fetching books.' });
+        }
+    };
 
-export default router;
+    public getBookById = async (req: Request, res: Response) => {
+        try {
+            const book = await this.bookService.getBookById(req.params.id);
+            if (book) {
+                res.json(book);
+            } else {
+                res.status(404).send('Book not found');
+            }
+        } catch (error) {
+            res.status(500).json({ error: 'An error occurred while fetching the book.' });
+        }
+    };
+
+    public createBook = async (req: Request, res: Response) => {
+        try {
+            const book = req.body;
+            await this.bookService.createBook(book);
+            res.status(201).send('Book created');
+        } catch (error) {
+            res.status(500).json({ error: 'An error occurred while creating the book.' });
+        }
+    };
+}
+
+export default new BookController();

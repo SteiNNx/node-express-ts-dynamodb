@@ -1,11 +1,5 @@
-import AWS from 'aws-sdk';
+import { DynamoDBDocumentClient } from '../database/DynamoDB';
 import Book from '../models/Book';
-
-const dynamoDB = new AWS.DynamoDB.DocumentClient({
-    region: 'local',
-    endpoint: 'http://dynamodb:8000'
-});
-
 export class BookService {
     private tableName = 'Books';
 
@@ -14,7 +8,7 @@ export class BookService {
             TableName: this.tableName
         };
 
-        const result = await dynamoDB.scan(params).promise();
+        const result = await DynamoDBDocumentClient.scan(params).promise();
         return result.Items as Book[];
     }
 
@@ -24,7 +18,7 @@ export class BookService {
             Key: { id }
         };
 
-        const result = await dynamoDB.get(params).promise();
+        const result = await DynamoDBDocumentClient.get(params).promise();
         return result.Item as Book || null;
     }
 
@@ -34,7 +28,7 @@ export class BookService {
             Item: book
         };
 
-        await dynamoDB.put(params).promise();
+        await DynamoDBDocumentClient.put(params).promise();
     }
 }
 

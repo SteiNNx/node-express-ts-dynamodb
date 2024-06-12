@@ -1,12 +1,12 @@
 import express from 'express';
-import router from './controllers/BookController';
-import runSeeder from './database/seed/seeder'; 
+import bookRoutes from './routes/BookRoutes';
+import RunSeeder from './database/seed/RunSeeder'; 
 
 const app = express();
 app.use(express.json());
-app.use('/books', router);
+app.use('/books', bookRoutes);
 
-runSeeder();
+RunSeeder();
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
