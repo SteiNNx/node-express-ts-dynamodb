@@ -1,12 +1,12 @@
 import express from 'express';
 import router from './controllers/BookController';
-import populate from './database/seeder'; 
+import runSeeder from './database/seed/seeder'; 
 
 const app = express();
 app.use(express.json());
 app.use('/books', router);
 
-populate();
+runSeeder();
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
