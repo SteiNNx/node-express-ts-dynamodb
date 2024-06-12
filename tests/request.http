@@ -1,8 +1,8 @@
 ### Install VSCode extension Rest Client
 ### @link https://marketplace.visualstudio.com/items?itemName=humao.rest-client
 
-### Get all books
-GET http://localhost:3000/books
+### Get all transactions
+GET http://localhost:3000/transaction
 
-### Get book by id 1
-GET http://localhost:3000/books/1
+### Get transaction by id 1
+GET http://localhost:3000/transaction/1

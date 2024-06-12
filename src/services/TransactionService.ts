@@ -1,35 +1,36 @@
 import { DynamoDBDocumentClient } from '../database/DynamoDB';
-import Book from '../models/Book';
-export class BookService {
-    private tableName = 'Books';
+import Transaction from '../models/Transaction';
 
-    async getAllBooks(): Promise<Book[]> {
+export class TransactionService {
+    private tableName = 'Transactions';
+
+    async getAllTransactions(): Promise<Transaction[]> {
         const params = {
             TableName: this.tableName
         };
 
         const result = await DynamoDBDocumentClient.scan(params).promise();
-        return result.Items as Book[];
+        return result.Items as Transaction[];
     }
 
-    async getBookById(id: string): Promise<Book | null> {
+    async getTransactionById(id: string): Promise<Transaction | null> {
         const params = {
             TableName: this.tableName,
             Key: { id }
         };
 
         const result = await DynamoDBDocumentClient.get(params).promise();
-        return result.Item as Book || null;
+        return result.Item as Transaction || null;
     }
 
-    async createBook(book: Book): Promise<void> {
+    async createTransaction(transaction: Transaction): Promise<void> {
         const params = {
             TableName: this.tableName,
-            Item: book
+            Item: transaction
         };
 
         await DynamoDBDocumentClient.put(params).promise();
     }
 }
 
-export default BookService;
+export default TransactionService;

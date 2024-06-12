@@ -1,10 +1,10 @@
 import express from 'express';
-import bookRoutes from './routes/BookRoutes';
+import TransactionRouter from './routes/TransactionRouter';
 import RunSeeder from './database/seed/RunSeeder'; 
 
 const app = express();
 app.use(express.json());
-app.use('/books', bookRoutes);
+app.use('/transaction', TransactionRouter);
 
 RunSeeder();
 

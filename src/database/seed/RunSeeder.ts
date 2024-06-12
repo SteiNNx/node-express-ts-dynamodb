@@ -1,43 +1,21 @@
 import DynamoDB from '../DynamoDB';
+import { transactionsItems } from './Data'
 
-const booksNameSchema: string = 'Books';
-const booksKeySchema: AWS.DynamoDB.KeySchema = [
-    { AttributeName: 'id', KeyType: 'HASH' }
-];
-const booksAttributeDefinitions: AWS.DynamoDB.AttributeDefinitions = [
-    { AttributeName: 'id', AttributeType: 'S' }
-];
-
-const booksItems = [
-    {
-        id: { S: '1' },
-        title: { S: 'The Great Gatsby' },
-        author: { S: 'F. Scott Fitzgerald' },
-    },
-    {
-        id: { S: '2' },
-        title: { S: 'To Kill a Mockingbird' },
-        author: { S: 'Harper Lee' },
-    },
-    {
-        id: { S: '3' },
-        title: { S: '1984' },
-        author: { S: 'George Orwell' },
-    }
-];
+const transactionsTableName: string = 'Transactions';
+const transactionsKeySchema: AWS.DynamoDB.KeySchema = [{ AttributeName: 'TransactionId', KeyType: 'HASH' }];
+const transactionsAttributeDefinitions: AWS.DynamoDB.AttributeDefinitions = [{ AttributeName: 'TransactionId', AttributeType: 'S' }];
 
 async function RunSeeder() {
 
     console.group('RunSeeder');
     console.log('**************Seeder::RunSeeder**************');
 
-    await createTable(booksNameSchema, booksKeySchema, booksAttributeDefinitions);
-    for (const item of booksItems) {
-        await populate(booksNameSchema, item);
+    await createTable(transactionsTableName, transactionsKeySchema, transactionsAttributeDefinitions);
+    for (const transactionIteration of transactionsItems) {
+        await populate(transactionsTableName, transactionIteration);
     }
 
     console.groupEnd();
-
 }
 
 async function createTable(
@@ -75,7 +53,7 @@ async function createTable(
 
 async function populate(
     nameSchema: string,
-    item: AWS.DynamoDB.PutItemInputAttributeMap
+    item
 ) {
     const insertParams: AWS.DynamoDB.Types.PutItemInput = {
         TableName: nameSchema,
