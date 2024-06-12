@@ -14,6 +14,18 @@ services:
     build:
       context: .
       dockerfile: infrastructure/node/Dockerfile
+      #args:
+      #  NODE_ENV: ${NODE_ENV}
+      #  AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      #  AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      #  AWS_REGION: ${AWS_REGION}
+      #  AWS_ENDPOINT: ${AWS_ENDPOINT}
+      #  AWS_API_VERSION: ${AWS_API_VERSION}
+      #  JWT_SECRET: ${JWT_SECRET}
+      #  JWT_AUDIENCE: ${JWT_AUDIENCE}
+      #  JWT_ISSUER: ${JWT_ISSUER}
+      #  PORT: ${PORT}
+      #  API_PREFIX: ${API_PREFIX}       
     container_name: node-express
     ports:
       - "3000:3000"
@@ -25,9 +37,11 @@ services:
     depends_on:
       - dynamodb
     environment:
-      AWS_ACCESS_KEY_ID: 'EXAMPLE'
-      AWS_SECRET_ACCESS_KEY: 'EXAMPLE'
-      REGION: 'local'
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_REGION: ${AWS_REGION}
+      AWS_ENDPOINT: ${AWS_ENDPOINT}
+      AWS_API_VERSION: ${AWS_API_VERSION}
       JWT_SECRET: ${JWT_SECRET}
       JWT_AUDIENCE: ${JWT_AUDIENCE}
       JWT_ISSUER: ${JWT_ISSUER}

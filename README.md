@@ -34,4 +34,4 @@ docker-compose up --build
 
 ### 3. Uso
 
-Ir a http://localhost:3000/books
+Ir a http://localhost/api/transaction

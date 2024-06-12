@@ -1,6 +1,7 @@
 import AWS from 'aws-sdk';
+import config from '../config/config';
 
-AWS.config.update({ region: "local" });
+AWS.config.update({ region: config.aws.region });
 
 //environment docker container node-express:
 // AWS_ACCESS_KEY_ID: 'EXAMPLE'
@@ -8,13 +9,15 @@ AWS.config.update({ region: "local" });
 // REGION: 'local'
 
 export const DynamoDB = new AWS.DynamoDB({
-    apiVersion: "2024-06-11",
-    endpoint: 'http://dynamodb:8000',
+    apiVersion: config.aws.apiVersion,
+    endpoint: config.aws.endpoint,
 });
 
 export const DynamoDBDocumentClient = new AWS.DynamoDB.DocumentClient({
-    apiVersion: "2024-06-11",
-    endpoint: 'http://dynamodb:8000',
+    accessKeyId: config.aws.accessKeyId,
+    secretAccessKey: config.aws.secretAccessKey,
+    apiVersion: config.aws.apiVersion,
+    endpoint: config.aws.endpoint,
 });
 
 export default DynamoDB;
