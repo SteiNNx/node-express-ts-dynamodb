@@ -36,7 +36,7 @@ jspm_packages/
 *~
 
 # Docker
-.dockerignore
+#.dockerignore
 docker-compose.override.yml
 docker-compose.prod.yml
 docker-compose.test.yml

@@ -21,6 +21,9 @@ export const config = {
         apiVersion: process.env.AWS_API_VERSION,
         endpoint: process.env.AWS_ENDPOINT,
     },
+    webhook: {
+        webHookUrl: process.env.WEBHOOK_URL,
+    },
     port: process.env.PORT,
     prefix: process.env.API_PREFIX,
 };

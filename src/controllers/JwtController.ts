@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
-import JwtToken from '../models/JwtToken';
+import JwtTokenService from '../services/JwtTokenService';
 import config from '../config/config';
+import { HttpStatus } from '../constants/HttpStatusConstants';
 
 class JwtController {
 
@@ -10,11 +11,12 @@ class JwtController {
                 body
             } = req;
 
-            const body_hashed_token = JwtToken.sign(
+            const body_hashed_token = JwtTokenService.sign(
                 body
             );
 
             res.type('json')
+                .status(HttpStatus.OK)
                 .send({
                     body_request: body,
                     body_hashed_token: body_hashed_token,
@@ -24,7 +26,7 @@ class JwtController {
                 });
         } catch (error) {
             console.error(error);
-            res.status(500)
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .json({ error: 'An error occurred while signBodyRequestToHashToken.' });
         }
     }
@@ -35,15 +37,16 @@ class JwtController {
                 token
             } = req?.body;
 
-            const jwtPayload = JwtToken.verify(token);
+            const jwtPayload = JwtTokenService.verify(token);
 
             res.type('json')
+                .status(HttpStatus.OK)
                 .send({
                     jwtPayload
                 });
         } catch (error) {
             console.error(error);
-            res.status(500)
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .json({ error: 'An error occurred while verifyHashedBodyRequestCheck.' });
         }
     }

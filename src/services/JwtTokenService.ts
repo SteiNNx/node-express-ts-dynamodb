@@ -6,7 +6,9 @@ import {
 } from 'jsonwebtoken';
 import config from '../config/config';
 
-export class JwtToken {
+// Documentación: @link https://www.npmjs.com/package/jsonwebtoken
+// Pagina Oficial: @link https://jwt.io/
+export class JwtTokenService {
     public static sign(payload: any): string {
         return sign(
             payload,
@@ -37,4 +39,4 @@ export class JwtToken {
     }
 }
 
-export default JwtToken;
+export default JwtTokenService;

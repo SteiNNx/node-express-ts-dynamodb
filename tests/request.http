@@ -17,7 +17,7 @@ Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJwZXBpdG
 
 ###################################################
 ### Request body json to hashed token and get config jwt
-POST http://localhost:3000/api/util/sign-body-request-to-hash-token
+POST http://localhost:3000/api/jwt/sign-body-request-to-hash-token
 Content-Type: application/json
 
 {
@@ -39,9 +39,9 @@ Content-Type: application/json
 }
 
 ### Request body hashed to hashed token and get config jwt
-POST http://localhost:3000/api/util/verify-hashed-body-request-check
+POST http://localhost:3000/api/jwt/verify-hashed-body-request-check
 Content-Type: application/json
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9hbGlhbnphIjoiYWxpYW56YSIsImNvZGlnb19yZXNwdWVzdGEiOiJFc3RhZG8iLCJyZXN1bHRhZG8iOiJPSyBvIE5PSyIsImZlY2hhIjoiMjAyNC0wNS0yN1QxNTozMDowMFoiLCJtb250byI6MTUwMCwibW9udG9fcHJvcGluYSI6MjAwLCJtZWRpb19kZV9wYWdvIjoxLCJ0cmFuc2FjdGlvbklkIjoidHhuLTAwMTIzNDU2Nzg5IiwibWFyY2EiOiJWIiwidWx0aW1vc19kaWdpdG9zX3RhcmpldGEiOjEyMzQsInRpcG9fdGFyamV0YSI6ImNyw6lkaXRvIiwiY3VvdGFzIjozLCJuX3NlcmllIjoiUE9TMTIzNDU2Nzg5Iiwib2NfYWxpYW56YSI6ImFsaWFuemExMjM0NTY3ODkwIiwicnJuIjoiMTIzNDU2IiwiaWF0IjoxNzE4MjQzNTEzLCJleHAiOjE3MTgyNDcxMTMsImF1ZCI6IkFVRElFTkNFIiwiaXNzIjoiSVNTVUVSIn0.zPXFpuWofESMMuehRRzJtZM7NnGCtR3El5goEqRQwjM"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9hbGlhbnphIjoiYWxpYW56YSIsImNvZGlnb19yZXNwdWVzdGEiOiJFc3RhZG8iLCJyZXN1bHRhZG8iOiJPSyBvIE5PSyIsImZlY2hhIjoiMjAyNC0wNS0yN1QxNTozMDowMFoiLCJtb250byI6MTUwMCwibW9udG9fcHJvcGluYSI6MjAwLCJtZWRpb19kZV9wYWdvIjoxLCJ0cmFuc2FjdGlvbklkIjoidHhuLTAwMTIzNDU2Nzg5IiwibWFyY2EiOiJWIiwidWx0aW1vc19kaWdpdG9zX3RhcmpldGEiOjEyMzQsInRpcG9fdGFyamV0YSI6ImNyw6lkaXRvIiwiY3VvdGFzIjozLCJuX3NlcmllIjoiUE9TMTIzNDU2Nzg5Iiwib2NfYWxpYW56YSI6ImFsaWFuemExMjM0NTY3ODkwIiwicnJuIjoiMTIzNDU2IiwiaWF0IjoxNzE4MjQ4NjgzLCJleHAiOjE3MTgyNTIyODMsImF1ZCI6IkFVRElFTkNFIiwiaXNzIjoiSVNTVUVSIn0.k4o98L1AR0mBKr7TxU5AgGXxU9VdpSjMtFvsZ44CTOY"
 }

@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import TransactionService from '../services/TransactionService';
+import { HttpStatus } from '../constants/HttpStatusConstants';
 
 class TransactionController {
     private TransactionService: TransactionService;
@@ -14,7 +15,7 @@ class TransactionController {
             res.json(transaction);
         } catch (error) {
             console.error(error);
-            res.status(500)
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .json({ error: 'An error occurred while fetching transaction.' });
         }
     };
@@ -25,7 +26,7 @@ class TransactionController {
             if (transaction) {
                 res.json(transaction);
             } else {
-                res.status(404)
+                res.status(HttpStatus.NOT_FOUND)
                     .send('transaction not found');
             }
         } catch (error) {
@@ -39,11 +40,11 @@ class TransactionController {
         try {
             const transaction = req.body;
             await this.TransactionService.createTransaction(transaction);
-            res.status(201)
+            res.status(HttpStatus.CREATED)
                 .send('transaction created');
         } catch (error) {
             console.error(error);
-            res.status(500)
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .json({ error: 'An error occurred while creating the transaction.' });
         }
     };
