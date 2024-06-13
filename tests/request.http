@@ -1,6 +1,7 @@
 ### Install VSCode extension Rest Client
 ### @link https://marketplace.visualstudio.com/items?itemName=humao.rest-client
 
+###################################################
 ### Get all transactions without jwt
 GET http://localhost:3000/api/transaction
 
@@ -13,3 +14,26 @@ GET http://localhost:3000/api/auth/login
 ### Get all transactions with jwt
 GET http://localhost:3000/api/transaction/security
 Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJwZXBpdG8gZ29uemFsZXoiLCJ1c2VybmFtZSI6InBlcC5nb256Iiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE4MjQxMzgzLCJleHAiOjE3MTgyNDQ5ODMsImF1ZCI6IkFVRElFTkNFIiwiaXNzIjoiSVNTVUVSIn0.Ur8xvrXeCLb3vHu22tXNVRA-fXwa1W5mFueS2kQ4fKs
+
+###################################################
+### Request body json to hashed token and get config jwt
+POST http://localhost:3000/api/util/sign-body-request-to-hash-token
+Content-Type: application/json
+
+{
+    "id_alianza": "alianza",
+    "codigo_respuesta": "Estado",
+    "resultado": "OK o NOK",
+    "fecha": "2024-05-27T15:30:00Z",
+    "monto": 1500,
+    "monto_propina": 200,
+    "medio_de_pago": 1,
+    "transactionId": "txn-00123456789",
+    "marca": "V",
+    "ultimos_digitos_tarjeta": 1234,
+    "tipo_tarjeta": "crédito", 
+    "cuotas": 3,
+    "n_serie": "POS123456789",
+    "oc_alianza": "alianza1234567890",
+    "rrn": "123456"
+}

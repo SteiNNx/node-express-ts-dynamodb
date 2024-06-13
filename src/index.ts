@@ -9,7 +9,6 @@ const app = express();
 app.use(json());
 app.use('/' + config.prefix, routes);
 
-// Log the loaded config for debugging
 console.log('Config:', config);
 
 RunSeeder();
