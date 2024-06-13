@@ -13,19 +13,7 @@ services:
   node-express:
     build:
       context: .
-      dockerfile: infrastructure/node/Dockerfile
-      #args:
-      #  NODE_ENV: ${NODE_ENV}
-      #  AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
-      #  AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
-      #  AWS_REGION: ${AWS_REGION}
-      #  AWS_ENDPOINT: ${AWS_ENDPOINT}
-      #  AWS_API_VERSION: ${AWS_API_VERSION}
-      #  JWT_SECRET: ${JWT_SECRET}
-      #  JWT_AUDIENCE: ${JWT_AUDIENCE}
-      #  JWT_ISSUER: ${JWT_ISSUER}
-      #  PORT: ${PORT}
-      #  API_PREFIX: ${API_PREFIX}       
+      dockerfile: infrastructure/node/Dockerfile      
     container_name: node-express
     ports:
       - "3000:3000"
@@ -37,14 +25,21 @@ services:
     depends_on:
       - dynamodb
     environment:
+      NODE_ENV: ${NODE_ENV}
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
       AWS_REGION: ${AWS_REGION}
       AWS_ENDPOINT: ${AWS_ENDPOINT}
       AWS_API_VERSION: ${AWS_API_VERSION}
       JWT_SECRET: ${JWT_SECRET}
-      JWT_AUDIENCE: ${JWT_AUDIENCE}
+      JWT_ALGORITHM: ${JWT_ALGORITHM}
+      JWT_EXPIRATION: ${JWT_EXPIRATION}
+      JWT_CLOCK_TOLERANCE: ${JWT_CLOCK_TOLERANCE}
       JWT_ISSUER: ${JWT_ISSUER}
+      JWT_AUDIENCE: ${JWT_AUDIENCE}
+      JWT_COMPLETE: ${JWT_COMPLETE}
+      JWT_IGNORE_EXPIRATION: ${JWT_IGNORE_EXPIRATION}
+      JWT_IGNORE_NOT_BEFORE: ${JWT_IGNORE_NOT_BEFORE}
       PORT: ${PORT}
       API_PREFIX: ${API_PREFIX}
 

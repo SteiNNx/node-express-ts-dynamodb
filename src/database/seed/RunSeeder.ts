@@ -1,23 +1,35 @@
-import DynamoDB from '../DynamoDB';
-import { transactionsItems } from './Data'
+import DynamoDB from '../DynamoDB'; // Importar la instancia de DynamoDB
 
+// Importar los datos de transacciones
+import { transactionsItems } from './Data';
+
+// Definir el nombre de la tabla de transacciones
 const transactionsTableName: string = 'Transactions';
+
+// Definir el esquema de clave para la tabla de transacciones
 const transactionsKeySchema: AWS.DynamoDB.KeySchema = [{ AttributeName: 'TransactionId', KeyType: 'HASH' }];
+
+// Definir las definiciones de atributos para la tabla de transacciones
 const transactionsAttributeDefinitions: AWS.DynamoDB.AttributeDefinitions = [{ AttributeName: 'TransactionId', AttributeType: 'S' }];
 
+// Función para ejecutar el seeder
 async function RunSeeder() {
 
-    console.group('RunSeeder');
-    console.log('**************Seeder::RunSeeder**************');
+    console.group('RunSeeder'); // Iniciar grupo de consola
+    console.log('**************Seeder::RunSeeder**************'); // Mensaje de inicio de ejecución
 
+    // Crear la tabla de transacciones
     await createTable(transactionsTableName, transactionsKeySchema, transactionsAttributeDefinitions);
+
+    // Llenar la tabla con los datos de transacciones
     for (const transactionIteration of transactionsItems) {
         await populate(transactionsTableName, transactionIteration);
     }
 
-    console.groupEnd();
+    console.groupEnd(); // Finalizar grupo de consola
 }
 
+// Función para crear una tabla en DynamoDB
 async function createTable(
     nameSchema: string,
     keySchema: AWS.DynamoDB.KeySchema,
@@ -28,16 +40,17 @@ async function createTable(
         KeySchema: keySchema,
         AttributeDefinitions: attributeDefinitions,
         ProvisionedThroughput: {
-            ReadCapacityUnits: 5,
-            WriteCapacityUnits: 5
+            ReadCapacityUnits: 5, // Unidades de capacidad de lectura
+            WriteCapacityUnits: 5 // Unidades de capacidad de escritura
         }
     };
 
-    console.group('CreateTable');
-    console.log('**************Seeder::createTable**************');
-    console.log({ createParams });
+    console.group('CreateTable'); // Iniciar grupo de consola
+    console.log('**************Seeder::createTable**************'); // Mensaje de inicio de creación de tabla
+    console.log({ createParams }); // Mostrar parámetros de creación
 
     return new Promise((resolve, reject) => {
+        // Crear la tabla en DynamoDB
         DynamoDB.createTable(createParams, function (err: AWS.AWSError, data: AWS.DynamoDB.CreateTableOutput) {
             if (err) {
                 console.log("DynamoDB Error: ", err);
@@ -47,10 +60,11 @@ async function createTable(
                 resolve(data);
             }
         });
-        console.groupEnd();
+        console.groupEnd(); // Finalizar grupo de consola
     });
 }
 
+// Función para llenar la tabla con datos
 async function populate(
     nameSchema: string,
     item
@@ -60,11 +74,12 @@ async function populate(
         Item: item,
     };
 
-    console.group('Populate');
-    console.log('**************Seeder::populate**************');
-    console.log({ insertParams });
+    console.group('Populate'); // Iniciar grupo de consola
+    console.log('**************Seeder::populate**************'); // Mensaje de inicio de inserción
+    console.log({ insertParams }); // Mostrar parámetros de inserción
 
     return new Promise((resolve, reject) => {
+        // Insertar el item en la tabla de DynamoDB
         DynamoDB.putItem(insertParams, function (err: AWS.AWSError, data: AWS.DynamoDB.Types.PutItemOutput) {
             if (err) {
                 console.log("DynamoDB Error: ", err);
@@ -74,8 +89,8 @@ async function populate(
                 resolve(data);
             }
         });
-        console.groupEnd();
+        console.groupEnd(); // Finalizar grupo de consola
     });
 }
 
-export default RunSeeder;
+export default RunSeeder; // Exportar la función RunSeeder como exportación por defecto

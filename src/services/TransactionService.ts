@@ -1,10 +1,10 @@
 import { DynamoDBDocumentClient } from '../database/DynamoDB';
-import Transaction from '../models/Transaction';
+import Transaction from '../models/schema/Transaction';
 
 export class TransactionService {
     private tableName = 'Transactions';
 
-    async getAllTransactions(): Promise<Transaction[]> {
+    public async getAllTransactions(): Promise<Transaction[]> {
         const params = {
             TableName: this.tableName
         };
@@ -13,7 +13,7 @@ export class TransactionService {
         return result.Items as Transaction[];
     }
 
-    async getTransactionById(id: string): Promise<Transaction | null> {
+    public async getTransactionById(id: string): Promise<Transaction | null> {
         const params = {
             TableName: this.tableName,
             Key: { id }
@@ -23,7 +23,7 @@ export class TransactionService {
         return result.Item as Transaction || null;
     }
 
-    async createTransaction(transaction: Transaction): Promise<void> {
+    public async createTransaction(transaction: Transaction): Promise<void> {
         const params = {
             TableName: this.tableName,
             Item: transaction
