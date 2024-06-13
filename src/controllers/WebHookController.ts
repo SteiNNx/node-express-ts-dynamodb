@@ -1,13 +1,24 @@
+import { Request, Response } from 'express';
 import { WebHookService } from '../services/WebHookService';
+import { HttpStatus } from '../constants/HttpStatusConstants';
 
-export class WebHookController {
+class WebHookController {
     private webHookService: WebHookService;
 
     constructor() {
         this.webHookService = new WebHookService();
     }
 
-    public async sendMessageToTeams(): Promise<void> {
-        await this.webHookService.sendTeamsMessage('title_title', 'message message message message message');
+    public sendMessageToTeams = async (req: Request, res: Response) => {
+        try {
+
+            await this.webHookService.sendTeamsMessage('title_title', 'message message message message message');
+        } catch (error) {
+            console.error(error);
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .json({ error: 'An error occurred while login.' });
+        }
     }
 }
+
+export default new WebHookController();

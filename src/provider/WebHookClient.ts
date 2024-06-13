@@ -9,6 +9,9 @@ export class WebHookClient {
 
     constructor() {
         this.webhookUrl = config.webhook.webHookUrl || '';
+        console.log(this.webhookUrl);
+        console.log(config);
+
         if (!this.webhookUrl) {
             throw new Error('TEAMS_WEBHOOK_URL is not defined in .env');
         }

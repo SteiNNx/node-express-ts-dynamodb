@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import JwtTokenService from '../services/JwtTokenService';
 import { HttpStatus } from '../constants/HttpStatusConstants';
+
 class AuthController {
 
     public login = async (req: Request, res: Response) => {
