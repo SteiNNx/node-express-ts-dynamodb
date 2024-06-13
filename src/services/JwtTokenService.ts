@@ -9,6 +9,7 @@ import config from '../config/config';
 // Documentación: @link https://www.npmjs.com/package/jsonwebtoken
 // Pagina Oficial: @link https://jwt.io/
 export class JwtTokenService {
+
     public static sign(payload: any): string {
         return sign(
             payload,

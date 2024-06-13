@@ -17,6 +17,8 @@ export class WebHookClient {
         }
     }
 
+    // In Node.js 22, the default TLS version used is TLS 1.3
+    // Change version TLS @link https://nodejs.org/api/tls.html#tlsdefault_max_version VALUES {'TLSv1.3', 'TLSv1.2', 'TLSv1.1', or 'TLSv1'}
     async sendMessage(title: string, message: string): Promise<void> {
         try {
             const payload = {
