@@ -14,8 +14,8 @@ class AuthController {
 
             const token = JwtToken.sign(
                 {
-                    userId: 'pepito gonzalez',
-                    username: 'pep.gonz',
+                    userId: 'pepito gonzalez', //username
+                    username: 'pep.gonz', //password
                     role: 'admin'
                 }
             );

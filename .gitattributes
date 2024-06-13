@@ -1,0 +1,63 @@
+# Archivos de texto: asegurarse de que usen LF para finales de línea
+* text=auto eol=lf
+
+# Archivos TypeScript y JavaScript
+*.ts text eol=lf diff=typescript
+*.tsx text eol=lf diff=typescript
+*.js text eol=lf
+*.jsx text eol=lf
+
+# Archivos JSON, YAML, y otros archivos de configuración
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.env text eol=lf
+*.example text eol=lf
+
+# Archivos de Markdown y texto plano
+*.md text eol=lf
+*.txt text eol=lf
+
+# Archivos de configuración de Git y Docker
+*.gitattributes text eol=lf
+*.gitignore text eol=lf
+*.dockerignore text eol=lf
+docker-compose.yml text eol=lf
+Dockerfile text eol=lf
+
+# Archivos de configuración de TypeScript y Node.js
+*.tsconfig text eol=lf
+*.eslintignore text eol=lf
+*.eslintrc text eol=lf
+*.prettierrc text eol=lf
+
+# Archivos de configuración para SonarQube
+sonar-project.properties text eol=lf
+
+# Archivos de configuración para AWS
+*.credentials text eol=lf
+*.config text eol=lf
+
+# Otros archivos que deben ser tratados como texto
+*.sh text eol=lf
+*.py text eol=lf
+*.rb text eol=lf
+*.pl text eol=lf
+
+# Imágenes y binarios
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.svg binary
+
+# Archivos binarios para Node.js
+*.node binary
+
+# No convertir archivos comprimidos
+*.zip binary
+*.tar binary
+*.gz binary
+*.bz2 binary
+*.xz binary
+*.7z binary

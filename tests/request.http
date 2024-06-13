@@ -37,3 +37,11 @@ Content-Type: application/json
     "oc_alianza": "alianza1234567890",
     "rrn": "123456"
 }
+
+### Request body hashed to hashed token and get config jwt
+POST http://localhost:3000/api/util/verify-hashed-body-request-check
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9hbGlhbnphIjoiYWxpYW56YSIsImNvZGlnb19yZXNwdWVzdGEiOiJFc3RhZG8iLCJyZXN1bHRhZG8iOiJPSyBvIE5PSyIsImZlY2hhIjoiMjAyNC0wNS0yN1QxNTozMDowMFoiLCJtb250byI6MTUwMCwibW9udG9fcHJvcGluYSI6MjAwLCJtZWRpb19kZV9wYWdvIjoxLCJ0cmFuc2FjdGlvbklkIjoidHhuLTAwMTIzNDU2Nzg5IiwibWFyY2EiOiJWIiwidWx0aW1vc19kaWdpdG9zX3RhcmpldGEiOjEyMzQsInRpcG9fdGFyamV0YSI6ImNyw6lkaXRvIiwiY3VvdGFzIjozLCJuX3NlcmllIjoiUE9TMTIzNDU2Nzg5Iiwib2NfYWxpYW56YSI6ImFsaWFuemExMjM0NTY3ODkwIiwicnJuIjoiMTIzNDU2IiwiaWF0IjoxNzE4MjQzNTEzLCJleHAiOjE3MTgyNDcxMTMsImF1ZCI6IkFVRElFTkNFIiwiaXNzIjoiSVNTVUVSIn0.zPXFpuWofESMMuehRRzJtZM7NnGCtR3El5goEqRQwjM"
+}
