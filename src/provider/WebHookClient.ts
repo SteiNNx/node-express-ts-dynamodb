@@ -13,7 +13,7 @@ export class WebHookClient {
         console.log(config);
 
         if (!this.webhookUrl) {
-            throw new Error('TEAMS_WEBHOOK_URL is not defined in .env');
+            throw new Error('WEBHOOK_URL is not defined in .env');
         }
     }
 
@@ -30,15 +30,27 @@ export class WebHookClient {
                 }]
             };
 
-            const response = await axios.post(this.webhookUrl, payload, {
+            let response = '';
+            await axios.post(this.webhookUrl, payload, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            });
+            })
+                .then((successResponse) => {
+                    console.log('then');
+                    console.log({ successResponse });
+                })
+                .catch((errorResponse) => {
+                    console.log('catch');
+                    console.log({ errorResponse });
+                });
 
-            if (response.status !== 200) {
-                throw new Error(`Error: ${response.status} - ${response.statusText}`);
-            }
+            console.log({ response });
+
+
+            //if (response.status !== 200) {
+            //    throw new Error(`Error: ${response.status} - ${response.statusText}`);
+            //}
 
             console.log('Message sent successfully to Teams');
         } catch (error) {
